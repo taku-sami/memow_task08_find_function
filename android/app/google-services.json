@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "521724024758",
+    "firebase_url": "https://memow-task08-findfunction.firebaseio.com",
+    "project_id": "memow-task08-findfunction",
+    "storage_bucket": "memow-task08-findfunction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521724024758:android:78b9c9a807e053df7dd317",
+        "android_client_info": {
+          "package_name": "com.example.memowtask08findfunction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521724024758-s71dsc5b3s3j2vibl65featj7j7fkg5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQOIAH0rwkvN6JzHyozlzDU928-8Xr7eg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521724024758-s71dsc5b3s3j2vibl65featj7j7fkg5i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
