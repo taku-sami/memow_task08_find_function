@@ -4,6 +4,7 @@ import 'package:memowtask08findfunction/cow.dart';
 import 'add_screen.dart';
 
 Firestore database = Firestore.instance;
+var querySnapshot;
 
 void main() => runApp(MyApp());
 
@@ -78,16 +79,53 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-Widget _buildBody(BuildContext context, String name) {
+Widget _buildBody(BuildContext context, String inputValue) {
   return StreamBuilder(
     stream: database
         .collection('cows')
-        .where("cowNames", arrayContains: name)
+        .where("cowNames", arrayContains: inputValue)
         .snapshots(),
     builder: (context, snapshot) {
-//      print(snapshot.data.documents);
       if (!snapshot.hasData) return LinearProgressIndicator();
 //      if (snapshot.data.length == 0) print('aaa');
+      try {
+        snapshot.data.documents[0]['null'];
+      } catch (e) {
+        if (inputValue == '') {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.search,
+                size: 200.0,
+                color: Colors.grey,
+              ),
+              Text(
+                '検索窓に入力してください。',
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ],
+          );
+        } else {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.search,
+                size: 200.0,
+                color: Colors.grey,
+              ),
+              Text(
+                '「$inputValue」に該当する結果はありません。',
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ],
+          );
+        }
+
+        return Text('null');
+      }
+
       return _buildList(context, snapshot.data.documents);
     },
   );
@@ -118,4 +156,11 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
       ),
     ),
   );
+}
+
+Future getQuerySnap(name) async {
+  querySnapshot = await database
+      .collection('cows')
+      .where("cowNames", arrayContains: name)
+      .getDocuments();
 }
